@@ -23,7 +23,7 @@ public class Authentication {
     }
     
     @Id
-    @Column(length = 20, nullable = true)
+    @Column(length = 20, nullable = false)
     private String code;
     
     @Column(length = 255, nullable = false)
