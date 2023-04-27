@@ -42,13 +42,25 @@ public class EmployeeController {
         return "employee/register";
     }
     
+      //setterを利用して設定とは？？？
+//    public void setDeleteFlag(Employee employee) {
+//        
+//        employee.setDeleteFlag(0);
+//    }
     @PostMapping("/register")
     public String postRegister(Employee employee) {
+    
+        //ここの書き方あってる？？？
+        employee.setDeleteFlag(0);
+        
+        //employee.setEmployeeId();
         
         service.saveEmployee(employee);
         
         return "redirect:/employee/list";
     }
+    
+   
     
     @GetMapping("/update/{id}/")
     public String getEmployee(@PathVariable("id") Integer id, Model model) {

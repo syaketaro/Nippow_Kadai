@@ -23,7 +23,7 @@ public class Authentication {
     }
     
     @Id
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = true)
     private String code;
     
     @Column(length = 255, nullable = false)
@@ -35,7 +35,7 @@ public class Authentication {
     
 //   　なぜ失敗するのか不明？？
     @OneToOne
-    @JoinColumn(name="employeeId", referencedColumnName="id")
+    @JoinColumn(name="employee_id", referencedColumnName="id")
     private Employee employee;
 }
 

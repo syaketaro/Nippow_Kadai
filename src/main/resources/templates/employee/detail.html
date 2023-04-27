@@ -21,7 +21,7 @@
              <!-- 認証エンティティから社員番号を持ってきたい -->
             <td th:text="${employee.authentication.code}"></td>
             <td th:text="${employee.name}"></td>
-            <td><a>管理者</a></td>
+            <td th:text="${employee.authentication.role}"></td>
             <td th:text="${employee.createdAt}"></td>
             <td th:text="${employee.updatedAt}"></td> 
         </tr>
