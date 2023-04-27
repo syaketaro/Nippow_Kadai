@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nippow Employee Detail</title>
+    <link rel="stylesheet" th:href="@{/css/employee/detail.css}">
+</head>
+<body>
+	<!--ここのIDの入れ方？？  -->
+    <h1>id:<span th:text="${employee.id}"></span>の従業員情報 詳細ページ</h1>
+    <table >
+         <tr>
+            <th>社員番号</th>
+            <th>氏名</th>
+            <th>権限</th>
+            <th>登録日時</th>
+            <th>更新日時</th>
+        </tr>
+        <!-- どうやって持ってくるのか？ -->
+        <tr>
+             <!-- 認証エンティティから社員番号を持ってきたい -->
+            <td th:text="${employee.authentication.code}"></td>
+            <td th:text="${employee.name}"></td>
+            <td><a>管理者</a></td>
+            <td th:text="${employee.createdAt}"></td>
+            <td th:text="${employee.updatedAt}"></td> 
+        </tr>
+    </table>
+    <p><a th:href="@{/employee/update/{id}/(id=${employee.id})}">この従業員情報を編集する</a></p>
+    <p><a th:href="@{/employee/list}">一覧に戻る</a></p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nippow Employee List</title>
+    <link rel="stylesheet" th:href="@{/css/employee/list.css}">
+</head>
+<body>
+    <h1>従業員 一覧</h1>
+    <table>
+        <tr>
+            <th>社員番号</th>
+            <th>氏名</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="employee : ${employeelist}">
+            <!-- 認証エンティティから社員番号を持ってきたい -->
+            <td th:text="${employee.authentication.code}"></td>
+            <td th:text="${employee.name}"></td>
+            <td> 
+                <a th:href="@{detail/{id}/(id=${employee.id})}">詳細を見る</a>
+            </td>
+        </tr>
+        
+    </table>
+    <!--↓ここわからんぽいんと  employeelistの件数-->
+    <p>(全<span th:text="${#lists.size(employeelist)}"></span>件)</p>
+    <p><a th:href="@{/employee/register}">新規従業員の登録</a></p>
+</body>
+</html>
