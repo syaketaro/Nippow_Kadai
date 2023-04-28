@@ -29,6 +29,7 @@ import lombok.NoArgsConstructor;
 public class Employee {
 
     
+//    @ColumnをF3すると何を使えるかわかる
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +48,7 @@ public class Employee {
     columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Date updatedAt;
     
-//    ここどうやって数値デフォルト０で設定するのか？
+//    ここどうやって数値デフォルト０で設定するのか？ 　→ Comtroller
 //    @Column(nullable = true)
 //    private Integer deleteFlag;
 //    @Column(nullable = true, columnDefinition = "tinyint(1) default 0")

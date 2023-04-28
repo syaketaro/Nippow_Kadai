@@ -29,7 +29,15 @@ public class EmployeeService {
     
     @Transactional
     public Employee saveEmployee(Employee employee) {
+//        ↓↓ここ全くわからないポイント　外部キーとの連結の処理、　getter,setterの復習
+        employee.getAuthentication().setEmployee(employee);
         
         return employeeRepository.save(employee);
     }
+    
+//    @Transactional
+//    public void deleteEmployee(Set<Integer> idck) {
+//            employeeRepository.deleteById(idck);
+//        
+//    }
 }

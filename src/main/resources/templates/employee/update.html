@@ -9,28 +9,31 @@
     <p>(パスワードは変更する場合のみ入力してください)</p>
     <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
         <input type="hidden" id="id" name="id" th:value="*{id}">
-         <!-- 認証エンティティ -->
         <p>社員番号</p>
         <p th:text="*{authentication.code}"></p>
+        <!-- ここのcode取得 -->
+        <input type="hidden" th:field="*{authentication.code}">
         <p>氏名</p>
         <input type="text" th:field="*{name}">
-        <!-- 認証エンティティ -->
-        <!-- ここの空欄表示 -->
+        <!-- ここの空欄表示？？？ →type="password" -->
         <p>パスワード</p>
-       <input type="text" th:field="*{authentication.password}" > 
+       <input type="password" th:field="*{authentication.password}" > 
         
-        <!-- 認証エンティティ -->
-        <!-- 二重に表示される -->
+        <!-- 二重に表示される？？？ -->
         <p>権限</p>
        　　 <select th:field="*{authentication.role}">
-            <option value="" th:text="*{authentication.role}">
             <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}" 
                     th:selected="*{authentication.role} == ${item}">>
         　　</select> 
         <br>
         <br>
         <input type="submit" value="投稿">
-        <p><a th:href="@{/employee/delete}">この従業員情報を削除する</a>
+        
+        <!-- <a th:href="@{/employee/list}">この従業員情報を削除する</a></p> -->
+        
+        <input type="submit" name="delete" value="削除">
+        
+        <!-- <input type="hidden" name="id" th:value="${employee.id}"> -->
         <p><a th:href="@{/employee/list}">一覧に戻る</a></p>
     </form>
 </body>

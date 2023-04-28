@@ -33,7 +33,7 @@ public class Authentication {
     @Enumerated(EnumType.STRING)
     private Role role;
     
-//   　なぜ失敗するのか不明？？
+//   　なぜ失敗するのか不明？？→Serviceの記述、nameの適合
     @OneToOne
     @JoinColumn(name="employee_id", referencedColumnName="id")
     private Employee employee;

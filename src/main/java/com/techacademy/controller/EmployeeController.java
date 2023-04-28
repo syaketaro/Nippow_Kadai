@@ -1,5 +1,6 @@
 package com.techacademy.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,7 +51,7 @@ public class EmployeeController {
     @PostMapping("/register")
     public String postRegister(Employee employee) {
     
-        //ここの書き方あってる？？？
+        //ここの書き方あってる？？？　and 全くわからなポイント
         employee.setDeleteFlag(0);
         
         //employee.setEmployeeId();
@@ -72,9 +73,20 @@ public class EmployeeController {
 
     @PostMapping("/update/{id}/")
     public String postEmployee(Employee employee) {
-       
+        
+        employee.setDeleteFlag(0);
         service.saveEmployee(employee);
        
+        return "redirect:/employee/list";
+    }
+    
+    @PostMapping(path="/update", params="delete")
+    public String delete(Employee employee) {
+        
+        employee.setDeleteFlag(1);
+        service.saveEmployee(employee);
+       
+
         return "redirect:/employee/list";
     }
 }
