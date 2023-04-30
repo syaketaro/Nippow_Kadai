@@ -80,13 +80,31 @@ public class EmployeeController {
         return "redirect:/employee/list";
     }
     
-    @PostMapping(path="/update", params="delete")
-    public String delete(Employee employee) {
+    @PostMapping("/delete/{id}/")
+    //path="/update", params=
+    public String delete(@PathVariable("id") Integer id) {
+        //, Employee employee
+        System.out.println("削除のメソッド開始");
         
+        Employee employee = service.getEmployee(id);
         employee.setDeleteFlag(1);
         service.saveEmployee(employee);
        
 
         return "redirect:/employee/list";
     }
+    
+//    前の書き方上の書き方との比較
+//    @PostMapping("/delete/{id}/")
+//    //path="/update", params=
+//    public String delete(Employee employee) {
+//        System.out.println("削除のメソッド開始");
+//        
+//        
+//        employee.setDeleteFlag(1);
+//        service.saveEmployee(employee);
+//       
+//
+//        return "redirect:/employee/list";
+//    }
 }

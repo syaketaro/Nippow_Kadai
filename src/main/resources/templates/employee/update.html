@@ -28,13 +28,18 @@
         <br>
         <br>
         <input type="submit" value="投稿">
-        
-        <!-- <a th:href="@{/employee/list}">この従業員情報を削除する</a></p> -->
-        
-        <input type="submit" name="delete" value="削除">
-        
+     </form>   
+     <!-- ここわからなかったポイント; hiddenの役割→あたいの受け渡し -->
+     <form method="post" th:action="@{/employee/delete/{id}/(id=${employee.id})}" th:object="${employee}">
+            <input type="hidden" name="id" th:value="*{id}" >
+            <input type="hidden" th:field="*{name}">
+            <input type="hidden" th:field="*{authentication.code}">
+            <input type="hidden" th:field="*{authentication.password}" > 
+            <input type="hidden" th:field="*{authentication.role}">
+            <input type="submit" name="delete" value="削除">
+     </form>
         <!-- <input type="hidden" name="id" th:value="${employee.id}"> -->
         <p><a th:href="@{/employee/list}">一覧に戻る</a></p>
-    </form>
+    
 </body>
 </html>
