@@ -22,8 +22,8 @@
             <td th:text="${employee.authentication.code}"></td>
             <td th:text="${employee.name}"></td>
             <td th:text="${employee.authentication.role}"></td>
-            <td th:text="${employee.createdAt}"></td>
-            <td th:text="${employee.updatedAt}"></td> 
+            <td th:text="${#temporals.format(employee.createdAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
+            <td th:text="${#temporals.format(employee.updatedAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
         </tr>
     </table>
     <p><a th:href="@{/employee/update/{id}/(id=${employee.id})}">この従業員情報を編集する</a></p>

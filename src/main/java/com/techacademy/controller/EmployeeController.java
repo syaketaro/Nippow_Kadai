@@ -3,12 +3,15 @@ package com.techacademy.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+//import com.techacademy.entity.Authentication;
 import com.techacademy.entity.Employee;
 //import com.techacademy.entity.Employee;
 import com.techacademy.service.EmployeeService;
@@ -49,9 +52,11 @@ public class EmployeeController {
 //        employee.setDeleteFlag(0);
 //    }
     @PostMapping("/register")
-    public String postRegister(Employee employee) {
+    public String postRegister(@Validated Employee employee, BindingResult res) {
     
-        //ここの書き方あってる？？？　and 全くわからなポイント
+        if(res.hasErrors()) {
+            return getRegister(employee);
+        }
         employee.setDeleteFlag(0);
         
         //employee.setEmployeeId();
@@ -72,7 +77,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/update/{id}/")
-    public String postEmployee(Employee employee) {
+    public String postEmployee(@PathVariable("id") Integer id, @Validated Employee employee, BindingResult res) {
+        
+        if(res.hasErrors()) {
+            // エラーあり
+            return  "employee/update";
+        }
         
         employee.setDeleteFlag(0);
         service.saveEmployee(employee);

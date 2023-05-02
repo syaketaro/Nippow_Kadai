@@ -13,6 +13,10 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull; 
+
 @Data
 @Entity
 @Table(name = "authentication")
@@ -23,14 +27,20 @@ public class Authentication {
     }
     
     @Id
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = false, unique = true)
+    //@NotNull
+    @NotEmpty
     private String code;
     
     @Column(length = 255, nullable = false)
+    //@NotNull
+    @NotEmpty
     private String password;
     
     @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
+    @NotNull
+   
     private Role role;
     
 //   　なぜ失敗するのか不明？？→Serviceの記述、nameの適合

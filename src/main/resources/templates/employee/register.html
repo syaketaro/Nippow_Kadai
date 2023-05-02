@@ -8,24 +8,36 @@
     <h1>従業員 新規登録ページ</h1>
     <form method="post" th:action="@{/employee/register}" th:object="${employee}">
          <!-- 認証エンティティ -->
-        <p>社員番号</p>
-        <input type="text" th:field="*{authentication.code}">
-        <p>氏名</p>
-        <input type="text" th:field="*{name}">
-        <!-- 認証エンティティ -->
-        <p>パスワード</p>
-        <!--  保存の書き方？？ -->
-       <input type="text" th:field="*{authentication.password}"> 
+        <label for="authentication.code">社員番号</label>
+        <input type="text" th:field="*{authentication.code}" th:errorclass="err">
+        <span th:errors="*{authentication.code}" class="err"></span>
+        <br>
+        <br>
         
-        <!-- 認証エンティティ -->
-        <p>権限</p>
-       　　 <select th:field="*{authentication.role}">
+        <label for="name">氏名</label>
+        <input type="text" th:field="*{name}">
+        <span th:errors="*{name}" class="err"></span>
+        <br>
+        <br>
+        
+        <label for="authentication.password">パスワード</label>
+        <input type="password" th:field="*{authentication.password}" th:errorclass="err"> 
+        <span th:errors="*{authentication.password}" class="err"></span>
+        <br>
+        <br>
+        
+        <label for="authentication.role">権限</label>
+       　　 <select th:field="*{authentication.role}" th:errorclass="err">
             <option value="" th:text="選択してください">
             <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}">
         　　</select> 
+        <span th:errors="*{authentication.role}" class="err"></span>
         <br>
+        
+        <input type="hidden" th:field="*{createdAt}">
+        <input type="hidden" th:field="*{updatedAt}">
         <br>
-       
+        
         <input type="submit" value="投稿">
         <p><a th:href="@{/employee/list}">一覧に戻る</a></p>
     </form>

@@ -1,5 +1,6 @@
 package com.techacademy.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -31,6 +32,8 @@ public class EmployeeService {
     public Employee saveEmployee(Employee employee) {
 //        ↓↓ここ全くわからないポイント　外部キーとの連結の処理、　getter,setterの復習
         employee.getAuthentication().setEmployee(employee);
+        employee.setCreatedAt(LocalDateTime.now());
+        employee.setUpdatedAt(LocalDateTime.now());
         
         return employeeRepository.save(employee);
     }

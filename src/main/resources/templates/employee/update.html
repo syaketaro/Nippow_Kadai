@@ -11,20 +11,27 @@
         <input type="hidden" id="id" name="id" th:value="*{id}">
         <p>社員番号</p>
         <p th:text="*{authentication.code}"></p>
-        <!-- ここのcode取得 -->
         <input type="hidden" th:field="*{authentication.code}">
-        <p>氏名</p>
-        <input type="text" th:field="*{name}">
-        <!-- ここの空欄表示？？？ →type="password" -->
-        <p>パスワード</p>
-       <input type="password" th:field="*{authentication.password}" > 
         
-        <!-- 二重に表示される？？？ -->
+        <label for="name">氏名</label>
+        <input type="text" th:field="*{name}">
+        <span th:errors="*{name}" class="err"></span>
+        <br>
+        <br>
+        
+        <label for="authentication.password">パスワード</label>
+        <input type="password" th:field="*{authentication.password}" th:errorclass="err"> 
+        <span th:errors="*{authentication.password}" class="err"></span>
+       
         <p>権限</p>
-       　　 <select th:field="*{authentication.role}">
+       　　 <select th:field="*{authentication.role}" th:errorclass="err">
             <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}" 
                     th:selected="*{authentication.role} == ${item}">>
         　　</select> 
+        <span th:errors="*{authentication.role}" class="err"></span>
+         
+        <input type="hidden" th:field="*{createdAt}">
+        <input type="hidden" th:field="*{updatedAt}">
         <br>
         <br>
         <input type="submit" value="投稿">
@@ -38,7 +45,6 @@
             <input type="hidden" th:field="*{authentication.role}">
             <input type="submit" name="delete" value="削除">
      </form>
-        <!-- <input type="hidden" name="id" th:value="${employee.id}"> -->
         <p><a th:href="@{/employee/list}">一覧に戻る</a></p>
     
 </body>
