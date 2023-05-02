@@ -34,7 +34,7 @@ public class Authentication {
     
     @Column(length = 255, nullable = false)
     //@NotNull
-    @NotEmpty
+    @NotEmpty(groups = {update.class})
     private String password;
     
     @Column(length = 10, nullable = false)

@@ -9,7 +9,7 @@
     <form method="post" th:action="@{/employee/register}" th:object="${employee}">
          <!-- 認証エンティティ -->
         <label for="authentication.code">社員番号</label>
-        <input type="text" th:field="*{authentication.code}" th:errorclass="err">
+        <input type="text" th:field="*{authentication.code}" th:errorclass="err" >
         <span th:errors="*{authentication.code}" class="err"></span>
         <br>
         <br>
@@ -21,7 +21,7 @@
         <br>
         
         <label for="authentication.password">パスワード</label>
-        <input type="password" th:field="*{authentication.password}" th:errorclass="err"> 
+        <input type="password" th:field="*{authentication.password}" th:errorclass="err" required="required" > 
         <span th:errors="*{authentication.password}" class="err"></span>
         <br>
         <br>

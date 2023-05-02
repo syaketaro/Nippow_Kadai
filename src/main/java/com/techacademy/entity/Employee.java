@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PreRemove;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotNull;
 
@@ -41,19 +42,19 @@ public class Employee {
     private String name;
     
     
-    @Column(nullable = false, updatable = true)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
     
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = true)
     private LocalDateTime updatedAt;
     
     
     @Column(nullable = false)
     private Integer deleteFlag;
     
-    
+    @Valid
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
-    private Authentication authentication;
+    public Authentication authentication;
     
     @PreRemove
     @Transactional

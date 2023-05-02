@@ -57,6 +57,12 @@ public class EmployeeController {
         if(res.hasErrors()) {
             return getRegister(employee);
         }
+        //既に存在する社員番号の従業員を登録しようとするとエラーが発生してしまう
+//        Employee currentemp =  service.getEmployee(employee);
+//        
+//        if(employee.authentication.getCode() == currentemp.authentication.getCode()) {
+//            return getRegister(employee);
+//        }
         employee.setDeleteFlag(0);
         
         //employee.setEmployeeId();
@@ -76,17 +82,34 @@ public class EmployeeController {
         return "employee/update";
     }
 
+    
+//    1.更新前従業員インスタンスを取得する
+//    2.更新前従業員インスタンスとブラウザからリクエストとして渡された従業員インスタンスを比較する
+//    3.比較の結果、変更点があればテーブルへ反映、なければテーブルへ反映しない
+//    4.画面遷移
+    
     @PostMapping("/update/{id}/")
-    public String postEmployee(@PathVariable("id") Integer id, @Validated Employee employee, BindingResult res) {
-        
-        if(res.hasErrors()) {
-            // エラーあり
-            return  "employee/update";
-        }
-        
+    public String postEmployee(@PathVariable("id") Integer id, Model model, Employee employee) {
+//      1.更新前従業員インスタンスを取得する
+        Employee currentemp =  service.getEmployee(id);
+        //model.addAttribute("employee", service.getEmployee(id));
+//      2.更新前従業員インスタンスとブラウザからリクエストとして渡された従業員インスタンスを比較する
+        if(employee.getName() == "") {
+            //名前の変更があったので更新
+//          3.比較の結果、変更点があればテーブルへ反映、なければテーブルへ反映しない
+            employee.setName(currentemp.getName());
+          } 
+
+        if(employee.authentication.getPassword() == "") {
+            //名前の変更があったので更新
+//          3.比較の結果、変更点があればテーブルへ反映、なければテーブルへ反映しない
+            employee.authentication.setPassword(currentemp.authentication.getPassword());
+          } 
+          
+       
         employee.setDeleteFlag(0);
         service.saveEmployee(employee);
-       
+//      4.画面遷移
         return "redirect:/employee/list";
     }
     
