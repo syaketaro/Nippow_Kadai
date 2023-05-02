@@ -74,7 +74,7 @@ public class EmployeeController {
         
         } catch(Exception e) {
             System.out.println("re");
-            return  "redirect:/employee/list";
+            return  "/employee/Recode";
         }
     }
     
