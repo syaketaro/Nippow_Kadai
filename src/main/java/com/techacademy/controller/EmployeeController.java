@@ -53,11 +53,12 @@ public class EmployeeController {
 //    }
     @PostMapping("/register")
     public String postRegister(@Validated Employee employee, BindingResult res) {
-    
+        try {
         if(res.hasErrors()) {
             return getRegister(employee);
         }
         //既に存在する社員番号の従業員を登録しようとするとエラーが発生してしまう
+        // boolean existsByCode(String code);
 //        Employee currentemp =  service.getEmployee(employee);
 //        
 //        if(employee.authentication.getCode() == currentemp.authentication.getCode()) {
@@ -70,6 +71,11 @@ public class EmployeeController {
         service.saveEmployee(employee);
         
         return "redirect:/employee/list";
+        
+        } catch(Exception e) {
+            System.out.println("re");
+            return  "redirect:/employee/list";
+        }
     }
     
    
