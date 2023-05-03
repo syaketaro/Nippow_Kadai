@@ -54,7 +54,7 @@ public class Employee {
     
     @Valid
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
-    public Authentication authentication;
+    private Authentication authentication;
     
     @PreRemove
     @Transactional

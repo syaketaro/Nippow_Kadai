@@ -106,10 +106,10 @@ public class EmployeeController {
             employee.setName(currentemp.getName());
           } 
 
-        if(employee.authentication.getPassword() == "") {
+        if(employee.getAuthentication().getPassword() == "") {
             //名前の変更があったので更新
 //          3.比較の結果、変更点があればテーブルへ反映、なければテーブルへ反映しない
-            employee.authentication.setPassword(currentemp.authentication.getPassword());
+            employee.getAuthentication().setPassword(currentemp.getAuthentication().getPassword());
           } 
           
        

@@ -15,7 +15,8 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull; 
+import javax.validation.constraints.NotNull;
+
 
 @Data
 @Entity
@@ -34,7 +35,10 @@ public class Authentication {
     
     @Column(length = 255, nullable = false)
     //@NotNull
-    @NotEmpty(groups = {update.class})
+    @NotEmpty
+    (groups = {update.class})
+    
+
     private String password;
     
     @Column(length = 10, nullable = false)

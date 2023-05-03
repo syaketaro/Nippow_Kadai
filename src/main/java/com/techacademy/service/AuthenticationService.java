@@ -22,8 +22,8 @@ public class AuthenticationService {
         return authenticationRepository.findAll();
     }
     
-    public Authentication getAuthentication(Integer employee_id) {
-        return authenticationRepository.findById(employee_id).get();
+    public Authentication getAuthentication(String code) {
+        return authenticationRepository.findById(code).get();
     }
     
     
