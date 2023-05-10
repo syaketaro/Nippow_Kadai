@@ -48,6 +48,7 @@ public class ReportController {
     public String getDetail(@PathVariable("id") Integer id, @AuthenticationPrincipal UserDetails user, Model model) {
         
         model.addAttribute("report", service.getReport(id));
+        
         model.addAttribute("user", user);
         
         
