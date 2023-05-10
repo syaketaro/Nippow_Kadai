@@ -35,16 +35,12 @@ public class Authentication {
     
     @Column(length = 255, nullable = false)
     //@NotNull
-    @NotEmpty
-    (groups = {update.class})
-    
-
+    @NotEmpty(groups = {update.class})
     private String password;
     
     @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull
-   
     private Role role;
     
 //   　なぜ失敗するのか不明？？→Serviceの記述、nameの適合

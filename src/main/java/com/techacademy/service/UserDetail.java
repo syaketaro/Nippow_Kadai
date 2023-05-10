@@ -12,7 +12,8 @@ import com.techacademy.entity.Employee;
 
 public class UserDetail implements UserDetails {
     private static final long serialVersionUID = 1L;
-
+//  このUserDetailクラスは、フィールドとして、Employee型のemployeeを定義しています。
+    
     private final Employee employee;
     //private final Collection<? extends GrantedAuthority> authorities;
     private final List<SimpleGrantedAuthority> authorities;

@@ -14,8 +14,12 @@ import com.techacademy.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
+    
+    //(cp7.6)パスワードを暗号化するには、まず、暗号化をしたいクラスに、以下のフィールドを追記します。
+
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
     private final EmployeeRepository employeeRepository;
     
     public EmployeeService(EmployeeRepository repository) {
@@ -33,15 +37,16 @@ public class EmployeeService {
     
     
     @Transactional
-    
     public Employee saveEmployee(Employee employee) {
 //        ↓↓ここ全くわからないポイント　外部キーとの連結の処理、　getter,setterの復習
         employee.getAuthentication().setEmployee(employee);
         employee.setCreatedAt(LocalDateTime.now());
         employee.setUpdatedAt(LocalDateTime.now());
         
+//　　　　<(cp7.6)saveする時のパスワードの暗号化>
+//        入力くされたpassword を　get して、passに格納 ※String型
+//        emp.authen に暗号化したpassをset
         String pass = employee.getAuthentication().getPassword();
-        
         employee.getAuthentication().setPassword(passwordEncoder.encode(pass));
 
         

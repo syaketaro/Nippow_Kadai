@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nippow report Detail</title>
+    <link rel="stylesheet" th:href="@{/css/report/detail.css}">
+</head>
+<body>
+    <h1>日報 詳細ページ</h1>
+    <table >
+         <tr>
+            <th>氏名</th>
+            <th>日付</th>
+            <th>タイトル</th>
+            <th>内容</th>
+            <th>登録日付</th>
+            <th>更新日付</th>
+        </tr>
+        <tr>
+            <td th:text="${user.employee.name}"></td>
+            <td th:text="${report.reportDate}"></td>
+            <td th:text="${report.title}"></td>
+            <!-- <td th:text="${report.content}"></td> -->
+            <!-- preタグは<td>の中に入れられる -->
+            <td><pre th:text="${report.content}"></pre></td>
+            <td th:text="${#temporals.format(report.createdAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
+            <td th:text="${#temporals.format(report.updatedAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
+        </tr>
+    </table>
+    <p><a th:href="@{/report/update/{id}/(id=${report.id})}">この日報を編集する</a></p>
+    <p><a th:href="@{/report/list}">一覧に戻る</a></p>
+</body>
+</html>

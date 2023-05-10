@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nipoow new Update</title>
+</head>
+<body>
+    <h1>日報 編集ページ</h1>
+    <form method="post" th:action="@{/report/register}" th:object="${report}">
+        <!-- ここIDを取得できていなかったため何度も登録されていってしまった -->
+        <input type="hidden" id="id" name="id" th:value="*{id}">
+        <label for="reportDate">日付</label>
+        <input type="date" th:field="*{reportDate}" th:errorclass="err" required="required">
+        <span th:errors="*{reportDate}" class="err"></span>
+        <br>
+        <br>
+        
+        <label for="employee.name">氏名</label>
+        <p th:text="${user.employee.name}"></p>
+        
+        
+        <label for="title">タイトル</label>
+        <br>
+        <input type="text" th:field="*{title}" th:errorclass="err" required="required" > 
+        <span th:errors="*{title}" class="err"></span>
+        <br>
+        <br>
+        
+        <label for="content">内容</label>
+        <br>
+        <input type="text" th:field="*{content}" th:errorclass="err" required="required" > 
+        <span th:errors="*{content}" class="err"></span>
+        <br>
+        
+        <input type="hidden" th:field="*{createdAt}">
+        <input type="hidden" th:field="*{updatedAt}">
+        <br>
+        
+        <input type="submit" value="投稿">
+        <p><a th:href="@{/report/list}">一覧に戻る</a></p>
+    </form>
+</body>
+</html>
