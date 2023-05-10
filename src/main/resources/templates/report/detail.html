@@ -5,6 +5,21 @@
     <title>Nippow report Detail</title>
     <link rel="stylesheet" th:href="@{/css/report/detail.css}">
 </head>
+
+<header id="header">
+  <div class="inner">
+    <p class= "logo" th:href="@{/}">日報管理システム</p>
+    <ul class="navi">
+      <li><a th:href="@{/employee/list}">従業員管理</a></li>
+      <li><a th:href="@{/report/list}">日報管理</a></li>
+      <li><a th:text="${user.employee.name}"></a></li>
+      <li><form method="post" th:action="@{/logout}">
+        <input type="submit" value="ログアウト">
+    </form></li>
+    </ul>
+  </div>
+</header>
+
 <body>
     <h1>日報 詳細ページ</h1>
     <table >
@@ -28,7 +43,7 @@
         </tr>
     </table>
     <!-- <p th:text="${user.employee.id}"></p> -->
-    <p th:text="${report.employee.id}"></p>
+    <!-- <p th:text="${report.employee.id}"></p> -->
     <div th:if="${user.employee.id == report.employee.id}">
     <p><a th:href="@{/report/update/{id}/(id=${report.id})}">この日報を編集する</a></p>
     </div>

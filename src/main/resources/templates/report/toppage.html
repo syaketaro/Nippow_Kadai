@@ -5,6 +5,21 @@
     <title>Nippow Top Page</title>
     <link rel="stylesheet" th:href="@{/css/employee/toppage.css}">
 </head>
+
+<header id="header">
+  <div class="inner">
+    <p class= "logo" th:href="@{/}">日報管理システム</p>
+    <ul class="navi">
+      <li><a th:href="@{/employee/list}">従業員管理</a></li>
+      <li><a th:href="@{/report/list}">日報管理</a></li>
+      <li><a th:text="${user.employee.name}"></a></li>
+      <li><form method="post" th:action="@{/logout}">
+        <input type="submit" value="ログアウト">
+    </form></li>
+    </ul>
+  </div>
+</header>
+
 <body>
     <h1>日報管理システムへようこそ</h1>
     <p>[自分の日報 一覧]</p>
@@ -27,8 +42,8 @@
     </table>
     <p>(全<span th:text="${#lists.size(reportmylist)}"></span>件)</p>
     <p><a th:href="@{/report/register}">新規日報の登録</a></p>
-    <!-- <form method="post" th:action="@{/logout}">
+    <form method="post" th:action="@{/logout}">
         <input type="submit" value="ログアウト">
-    </form><br> -->
+    </form><br>
 </body>
 </html>

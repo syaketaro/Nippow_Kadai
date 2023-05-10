@@ -28,18 +28,19 @@ public class ReportController {
     }
     
     @GetMapping("/")
-    public String getMypage( @AuthenticationPrincipal UserDetail user,Model model) {
+    public String getMypage(@AuthenticationPrincipal UserDetail user, Model model) {
         
+        model.addAttribute("user", user);
         model.addAttribute("reportmylist", service.getMyList(user.getEmployee()));
         System.out.println("test");
         return "report/toppage";
     }
     
     @GetMapping("/report/list")
-    public String getList(Model model) {
+    public String getList(Model model, @AuthenticationPrincipal UserDetails user) {
         
         model.addAttribute("reportlist", service.getReportList());
-        
+        model.addAttribute("user", user);
         
         return "report/list";
     }
